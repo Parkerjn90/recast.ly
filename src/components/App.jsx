@@ -1,12 +1,16 @@
 //Refactor to es6 React component.
 import exampleVideoData from '../data/exampleVideoData.js';
-
+import VideoList from './VideoList.js';
 //console.log(exampleVideoData);
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = exampleVideoData; // unknown state as of writing
+    this.state = {
+      videos: exampleVideoData,
+    }; // unknown state as of writing
+
   }
+
   render() {
     return (
       <div>
@@ -20,7 +24,7 @@ class App extends React.Component {
             <div><h5><em>videoPlayer</em> view goes here</h5></div>
           </div>
           <div className="col-md-5">
-            <div><h5><em>videoList</em> view goes here</h5></div>
+            <VideoList videoFeed={this.state.videos}></VideoList>
           </div>
         </div>
       </div>
@@ -28,7 +32,7 @@ class App extends React.Component {
   }
 }
 
-
+// {/* <div><h5><em>videoList</em> view goes here</h5></div> */}
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
