@@ -4,8 +4,8 @@ const VideoList = (props) => {
   console.log(props);
   return (
     <div className="video-list">
-      {props.videoFeed.map((video) => (
-        <VideoListEntry item={video}></VideoListEntry>
+      {props.videos.map((video) => (
+        <VideoListEntry video={video} handleClick={props.handleClick}></VideoListEntry>
       ))}
     </div>
   );
@@ -21,4 +21,4 @@ VideoList.propTypes = {
 // `var` declarations will only exist globally where explicitly defined.
 export default VideoList;
 
-// {/* <div><h5><em>videoListEntry</em> view goes here</h5></div> */}
+// eventually change video prop id (line 8) to individual video's id (visible within each object)

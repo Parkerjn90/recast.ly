@@ -1,6 +1,8 @@
 //Refactor to es6 React component.
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
+import VideoPlayer from './VideoPlayer.js';
+
 //console.log(exampleVideoData);
 class App extends React.Component {
   constructor(props) {
@@ -8,7 +10,14 @@ class App extends React.Component {
     this.state = {
       videos: exampleVideoData,
     }; // unknown state as of writing
+    this.handleClick = this.handleClick.bind(this);
+  }
 
+  // define handleClick function
+  handleClick(event) {
+    event.preventDefault();
+    // update videoPlayer
+    console.log('clicked!');
   }
 
   render() {
@@ -21,10 +30,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><h5><em>videoPlayer</em> view goes here</h5></div>
+            <VideoPlayer videos={this.state.videos[0]}></VideoPlayer>
           </div>
           <div className="col-md-5">
-            <VideoList videoFeed={this.state.videos}></VideoList>
+            <VideoList videos={this.state.videos} handleClick={this.handleClick}></VideoList>
           </div>
         </div>
       </div>
