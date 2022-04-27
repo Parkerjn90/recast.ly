@@ -19,14 +19,14 @@ class Search extends React.Component {
     this.props.getVideos(this.state.userinput);
   }
 
-    // setstate onlineVideos searchyoutube(this.userinput, cb)
-    // cb sets App state with returned info from searchYoutuneVideo
-    //console.log(this.state.userinput);
+  // setstate onlineVideos searchyoutube(this.userinput, cb)
+  // cb sets App state with returned info from searchYoutuneVideo
+  //console.log(this.state.userinput);
 
   handleInputChange(event) {
     event.preventDefault();
     // this.props.getVideos(event.target.value);
-    this.setState({ userinput: event.target.value});
+    this.setState({ userinput: event.target.value });
     console.log(event.target.value);
   }
 
