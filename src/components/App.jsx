@@ -10,10 +10,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: [],
-    }; // unknown state as of writing
+      videos: exampleVideoData,
+      currentVideo: exampleVideoData[0]
+    };
     this.handleClick = this.handleClick.bind(this);
-    this.fetchState = this.fetchState.bind(this);
+    this.getYouTubeVideos = this.getYouTubeVideos.bind(this);
+    this.getYouTubeVideos('Cute cat video');
   }
 
   // define handleClick function
@@ -23,27 +25,32 @@ class App extends React.Component {
     for ( let i = 0; i < this.state.videos.length; i++) {
       var targ = this.state.videos[i].snippet.title;
       if (targ === targ2) {
-        this.setState({video: this.state.videos[i]});
+        this.setState({currentVideo: this.state.videos[i]});
       }
     }
 
   }
 
-  fetchState() {
+  getYouTubeVideos(input) {
+    // search youtube api
+
+    searchYouTube(input, (youTubeVideos) =>
+    //console.log(youTubeVideos);
     this.setState({
-      videos: Search.state.onlineVideos
-    });
+      videos: youTubeVideos
+    })
+    );
   }
 
   render() {
     return (
       <div>
         <nav className="navbar">
-          <Search></Search>
+          <Search getVideos={this.getYouTubeVideos.bind(this)}></Search>
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer currentVideo={this.state.currentVideo || this.state.videos[0]}></VideoPlayer>
+            <VideoPlayer currentVideo={this.state.currentVideo}></VideoPlayer>
           </div>
           <div className="col-md-5">
             <VideoList videos={this.state.videos} handleClick={this.handleClick}></VideoList>
@@ -53,9 +60,9 @@ class App extends React.Component {
     );
   }
 
-  componentDidMount() {
-    this.setState({videos: });
-  }
+  // componentDidMount() {
+  //   this.setState({videos: });
+  // }
 }
 
 
